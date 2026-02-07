@@ -131,3 +131,7 @@ if not DEBUG:
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 LOGIN_URL = '/signin'
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://django-auth-crud-s5s4.onrender.com',
+]
