@@ -122,13 +122,17 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-DEBUG = True
-
-# 3. Mantén la configuración de WhiteNoise dentro del if (o fuera, da igual, pero STATIC_ROOT es la obligatoria)
 if not DEBUG:
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
+    # Tell Django to copy static assets into a path called `staticfiles` (this is specific to Render)
+
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+    # Enable the WhiteNoise storage backend, which compresses static files to reduce disk use
+
+    # and renames the files with unique names for each version to support long-term caching
+
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 LOGIN_URL = '/signin'
 
